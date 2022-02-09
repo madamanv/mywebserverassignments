@@ -227,11 +227,14 @@
       <script>
         
 
-        $(".panel-tabs a").click(function(){
-         $(".panel-tabs a").removeClass("is-active");
+        $(".tabs li").click(function(){
+         $(".tabs li").removeClass("is-active");
          $(this).addClass("is-active");
          
          switch ($(this).text().trim()) {
+          case "All":
+                    showAll();                    
+                    break;
                 case "Current":
                     showAll();
                     $(":checked").closest(".panel-block").hide();
@@ -243,9 +246,7 @@
                 case "Upcoming":
                     showAll();            
                     break;
-                case "All":
-                    showAll();                    
-                    break;  
+                  
             
                 default:
                     break;
