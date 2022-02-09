@@ -126,25 +126,25 @@
                 <li class="is-active">
                   <a>
                     <span class="icon is-small"><i class="fas fa-clipboard-list"></i></span>
-                    <span>Current</span>
+                    <span>All</span>
                   </a>
                 </li>
                 <li>
                   <a>
                     <span class="icon is-small"><i class="fas fa-calendar-times"></i></span>
-                    <span>Completed</span>
+                    <span>Current</span>
                   </a>
                 </li>
                 <li>
                   <a>
                     <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
-                    <span>Upcoming</span>
+                    <span>Completed</span>
                   </a>
                 </li>
                 <li>
                   <a>
                     <span class="icon is-small"><i class="fas fa-calendar"></i></span>
-                    <span>All</span>
+                    <span>Upcoming</span>
                   </a>
                 </li>
               </ul>
@@ -157,23 +157,23 @@
               </span>
             </p>
           </div>
-          <a class="panel-block">
+          <a class="panel-block" style="color: blue;" >
               <input type="checkbox" checked="">
               Make Bulma great again
           </a>
-          <a class="panel-block">
+          <a class="panel-block" style="color: yellow;" >
               <input type="checkbox">
               Add some more features
           </a>
-          <a class="panel-block">
+          <a class="panel-block" style="color: red;">
               <input type="checkbox">
               Make a github account
           </a>
-          <a class="panel-block">
+          <a class="panel-block" style="color: orange;">
               <input type="checkbox">
               Learn how to use github
           </a>
-          <a class="panel-block">
+          <a class="panel-block" style="color: green;" >
               <input type="checkbox">
               add a .gitignore file
           </a>
@@ -223,5 +223,42 @@
     </section>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script>
+        
+
+        $(".panel-tabs a").click(function(){
+         $(".panel-tabs a").removeClass("is-active");
+         $(this).addClass("is-active");
+         
+         switch ($(this).text().trim()) {
+                case "Current":
+                    showAll();
+                    $(":checked").closest(".panel-block").hide();
+                    break;
+                case "Completed":
+                    showAll();
+                    $("input:not(:checked)").closest(".panel-block").hide();                        
+                        break;
+                case "Upcoming":
+                    showAll();            
+                    break;
+                case "All":
+                    showAll();                    
+                    break;  
+            
+                default:
+                    break;
+            }
+          
+
+          function showAll() {
+            $(".panel-block").show();
+          }
+      
+        });
+
+
+</script>
 </body>
 </html>
