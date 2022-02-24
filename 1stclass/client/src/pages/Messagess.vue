@@ -1,99 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulma</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-    <style>
-      
-      :checked + span{
-            text-decoration: line-through;
-        }
-    
-    </style>
-</head>
-<body>
-  <nav  class="navbar is-primary">
-    
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo-white.png" alt="Bulma: a modern CSS framework based on Flexbox"  width="112" height="28" >
-      </a>
-      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    
-  
-    <div id="navbarExampleTransparentExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item" href="https://bulma.io/">
-          Home
-        </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-            Docs
-          </a>
-          <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-              Overview
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-              Modifiers
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-              Columns
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-              Layout
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              Form
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
-            </a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="https://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms">
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                <span>
-                  Tweet
-                </span>
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.9.3/bulma-0.9.3.zip">
-                <span class="icon">
-                  <i class="fas fa-download"></i>
-                </span>
-                <span>Download</span>
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+<script setup lang="ts">
 
-  <div class="section">
+</script>
+
+
+<template>
+<div class="section">
   <div class="container is-one-quarter">
     <div class="columns">
       
@@ -238,38 +149,14 @@
       </ul>
     </aside>
     </div>
-    </section>
+    
     </div>
   </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script>
-        
+</template>
 
-        $(".tabs li").click(function(){
-         $(".tabs li").removeClass("is-active");
-         $(this).addClass("is-active");
-
-         if($(this).text().trim() == "Current"){
-           showAll();
-           $(":checked").closest(".panel-block").hide();
-         }
-
-         else if($(this).text().trim() == "Completed"){
-              showAll();
-              $("input:not(:checked)").closest(".panel-block").hide();
-         }
-         else {
-           showAll();
-         }
-
-        
-      
-        });
-        function showAll() {
-            $(".panel-block").show();
-          }
-
-</script>
-</body>
-</html>
+<style>
+.is-completed {
+        text-decoration: line-through;
+    }
+</style>
