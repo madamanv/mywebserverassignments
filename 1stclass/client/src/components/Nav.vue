@@ -1,91 +1,76 @@
 <script setup lang="ts">
-
+import { ref } from 'vue';
+import { RouterLink } from "vue-router";
+import LoginBadge from './LoginBadge.vue';
+const isOpen = ref(false);
 </script>
 
 <template>
-     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <nav class="navbar xyz" role="navigation" aria-label="main navigation">
+    <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo-white.png" width="112" height="28">
-        </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarExample">
+      <div class="img">
+          <img src="src/assets/44.png" />
+          </div>
+        
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          :class="{ 'is-active': isOpen }"
+          @click="isOpen = !isOpen"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-
-      <div id="navbarExample" class="navbar-menu">
+      <div class="navbar-menu" :class="{ 'is-active': isOpen }">
         <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-
-
+          <router-link class="navbar-item" to="/"><b>Home</b></router-link>
+          
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-              Docs
-            </a>
+            <a class="navbar-link"><b>Tasks</b></a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-                Overview
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-                Modifiers
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                Columns
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-                Layout
-              </a>
-              <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-                Form
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-                Elements
-              </a>
-              <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-                Components
-              </a>
+              <router-link class="navbar-item" to="/assignedtasks">Tasks Assigned</router-link>
+              <router-link class="navbar-item" to="/viewAllTasks">All Tasks</router-link>
             </div>
           </div>
+          
+            
+            
+              <router-link class="navbar-item" to="/about"><b>About</b></router-link>
+              
+              <router-link class="navbar-item" to="/contact"><b>Contact</b></router-link>
+              
+              
+            
+          </div>
         </div>
-
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet"
-                  data-social-target="https://bulma.io" target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox;hashtags=bulmaio;url=https://bulma.io;via=jgthms">
-                  <span class="icon">
-                    <i class="fab fa-twitter"></i>
-                  </span>
-                  <span>
-                    Tweet
-                  </span>
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-primary"
-                  href="https://github.com/jgthms/bulma/releases/download/0.9.3/bulma-0.9.3.zip">
-                  <span class="icon">
-                    <i class="fas fa-download"></i>
-                  </span>
-                  <span>Download</span>
-                </a>
-              </p>
-            </div>
+            <login-badge />
           </div>
+
         </div>
       </div>
-    </nav>
-    <h1>Marachu Chandra Sekhar</h1>
+    
+  </nav>
 </template>
 
 <style>
-
+.img{
+  height: 80px;
+  width: 60px;
+}
+.xyz .navbar{
+  background-color: black;
+}
+.navbar-dropdown:hover{
+  background-color: black;
+}
+.is-hoverable{
+  
+}
 </style>

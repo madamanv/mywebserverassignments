@@ -4,35 +4,50 @@ export interface User {
     handle: string;
     password: string;
     email: string;
-    pic: string;
+    picture: string;
     id: number;
+    userTasks : any;
 }
-export const list: User[]= [
+
+export const list: User[] = [
     {
-        firstName: 'Chandra Sekhar',
-        lastName: 'Marachu',
-        handle: 'ChandraSekharMarachu',
-        password: 'mcs',
-        email: 'chandra@cs.com',
-        pic: 'https://randomuser.me/api/potraits/men/3.jpg',
         id: 1,
+        handle: 'dodge',
+        firstName: 'chandra',
+        lastName: 'marachu',
+        password: 'demon',
+        email: 'dodge@gmail.com',
+        picture: 'https://randomuser.me/api/portraits/men/1.jpg',
+        userTasks: [
+            {task : 'tyres',dueDate:'2022-01-15', isCompleted: true, assignedBy: "dodge"},
+            {task : 'Nos',dueDate:'2022-02-4', isCompleted: false, assignedBy: "hellcat"},
+            {task : 'cylinder',dueDate:'2022-03-2', isCompleted: true, assignedBy: "widebody"}
+        ]
     },
     {
-        firstName: 'Chandra ',
-        lastName: 'Marachu',
-        handle: 'ChandraMarachu',
-        password: 'mc',
-        email: 'chandra@c.com',
-        pic: 'https://randomuser.me/api/potraits/men/5.jpg',
-        id: 1,
+        id: 2,
+        handle: 'hellcat',
+        firstName: 'sekhar',
+        lastName: 'marachu',
+        password: 'demon',
+        email: 'hellcat@gmail.com',
+        picture: 'https://randomuser.me/api/portraits/men/2.jpg',
+        userTasks: [
+            {task : 'tyres check',dueDate:'2022-01-21', isCompleted: false, assignedBy: "dodge"},
+            {task : 'Gas Leak',dueDate:'2022-02-2', isCompleted: false, assignedBy: "hellcat"}
+        ]
     },
     {
-        firstName: 'Sekhar',
-        lastName: 'Marachu',
-        handle: 'SekharMarachu',
-        password: 'ms',
-        email: 'Sekhar@s.com',
-        pic: 'https://randomuser.me/api/potraits/men/7.jpg',
-        id: 1,
-    },
-];
+        id: 3,
+        handle: 'widebody',
+        firstName: 'chandrasekhar',
+        lastName: 'marachu',
+        password: 'demon',
+        email: 'widebody@gmail.com',
+        picture: 'https://randomuser.me/api/portraits/men/3.jpg',
+        userTasks: [
+            {task : 'Nos Engine check',dueDate:'2022-05-04', isCompleted: false, assignedBy: "hellcat"},
+            {task : 'multi cylinder',dueDate:'2022-05-016', isCompleted: false, assignedBy: "widebody"}
+        ]
+    }
+]

@@ -1,7 +1,6 @@
-import { reactive } from "vue";
 import router from "../router";
-
-import * as users from "../models/user";
+import * as users from "../models/user"
+import { reactive } from "vue";
 
 
 const session = reactive({
@@ -10,20 +9,18 @@ const session = reactive({
 
 export async function Login(handle: string, password: string) {
     const user = users.list.find(u => u.handle === handle);
-
     if (!user) {
         throw { message: "User not found" };
     }
     if(user.password !== password) {
-        throw { message: "Incorrect password" };
+        throw { message: "Password Incorrect" };
     }
-
     session.user = user;
-    router.push('/messages');
+    router.push('/AssignedTasks');
 }
-
 export function Logout() {
     session.user = null;
+    router.push('/login');
 }
     
 export default session;

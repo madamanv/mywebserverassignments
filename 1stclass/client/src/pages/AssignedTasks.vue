@@ -2,19 +2,20 @@
 import session from "../models/session";
 import { ref, reactive, onMounted } from 'vue';
 import * as users from "../models/user"
-let currentTab= ref('All');
-let newTaskName = ref('');
-let dueDate = ref('');
-let assignedTo = ref('');
-let userTaskArray = session.user?.userTasks; 
-let allTasks = reactive(session.user != null?session.user.userTasks:null);
-let tasks= reactive(session.user != null?session.user.userTasks:null);
-let assignedUser: any;
+import { User } from "../models/user";
+const currentTab= ref('All');
+const newTaskName = ref('');
+const dueDate = ref('');
+const assignedTo = ref('');
+const userTaskArray = session.user?.userTasks; 
+const allTasks = reactive(session.user != null?session.user.userTasks:null);
+const tasks = ref(session.user != null?session.user.userTasks:null);
+const assignedUser = ref(null as string | null | undefined);
 //let tasks: Array<string>;
 console.log(users.list);
-function addTask(this: any){
+function addTask(){
         const user = users.list.find(u => u.id+"" == assignedTo.value);
-        assignedUser = session.user?.handle
+        assignedUser.value = session.user?.handle
         console.log(assignedUser);
         console.log(user)
         user?.userTasks.unshift({ 
@@ -25,25 +26,19 @@ function addTask(this: any){
         })
         console.log(user)
         if(session.user?.id+"" == assignedTo.value ){
-            this.tasks = user?.userTasks;
-        }
-        
-      //   allTasks.unshift({
-      //     task: newTaskName.value,
-      //     dueDate: dueDate.value,
-      //     isCompleted: false
-      // });
-      //this.tasks = this.allTasks;
+            tasks.value = user?.userTasks;
+        }        
 }
-function taskHandler(this: any, currentTab : any){
-  if (this.currentTab.includes('Current')) {
-            this.tasks = this.allTasks.filter((task: any) => !task.isCompleted);
+function taskHandler( tab : string){
+  currentTab.value = tab
+  if (currentTab.value.includes('Current')) {
+            tasks.value = allTasks.filter((task: any) => !task.isCompleted);
           }
-          else if (this.currentTab.includes('Completed')) {
-            this.tasks = this.allTasks.filter((task: any) => task.isCompleted);
+          else if (currentTab.value.includes('Completed')) {
+            tasks.value = allTasks.filter((task: any) => task.isCompleted);
           }
           else {
-            this.tasks = this.allTasks;
+            tasks.value = allTasks;
           }
 }
 </script>
@@ -56,7 +51,7 @@ function taskHandler(this: any, currentTab : any){
           <div class="panel">
             <div class="tabs is-boxed">
               <ul>
-                <li :class='{ "is-active": currentTab == "Current" }' @click="currentTab = 'Current',taskHandler('Current')">
+                <li :class='{ "is-active": currentTab == "Current" }' @click="taskHandler('Current')">
                   <a>
                     <span class="icon ">
                       <i class="fas fa-clipboard-list" aria-hidden="true"></i>
@@ -64,7 +59,7 @@ function taskHandler(this: any, currentTab : any){
                     <span>Current</span>
                   </a>
                 </li>
-                <li :class='{ "is-active": currentTab == "Completed" }' @click="currentTab = 'Completed',taskHandler('Completed')">
+                <li :class='{ "is-active": currentTab == "Completed" }' @click="taskHandler('Completed')">
                   <a>
                     <span class="icon ">
                       <i class="fas fa-calendar-times" aria-hidden="true"></i>
@@ -72,7 +67,7 @@ function taskHandler(this: any, currentTab : any){
                     <span>Completed</span>
                   </a>
                 </li>
-                <li :class='{ "is-active": currentTab == "All" }' @click="currentTab = 'All',taskHandler('All')">
+                <li :class='{ "is-active": currentTab == "All" }' @click="taskHandler('All')">
                   <a>
                     <span class="icon ">
                       <i class="fas fa-calendar" aria-hidden="true"></i>
@@ -86,35 +81,32 @@ function taskHandler(this: any, currentTab : any){
               <form style="width: 100%;" @submit.prevent="addTask">
                 <div class="field has-addons">
                   <div class="control has-icons-left is-expanded">
-                    <input class="input is-primary" type="text" placeholder="New Task" v-model="newTaskName" />
+                    <input class="input is-info" type="text" placeholder="New Task" v-model="newTaskName" />
                     <span class="icon is-left">
-                      <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                      <i class="fas fa-circle" aria-hidden="true"></i>
                     </span>
                   </div><br>
                   <div class="control has-icons-left is-expanded">
-                    <input class="input is-primary" type="date" placeholder="Date" v-model="dueDate" />
+                    <input class="input is-info" type="date" placeholder="Date" v-model="dueDate" />
                     <span class="icon is-left">
-                      <i class="fa fa-dharmachakra" aria-hidden="true"></i>
+                      <i class="fas fa-circle"></i>
                     </span>
                   </div><br>
                   <div class="control has-icons-left is-expanded">
-                    <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
+                    <select class="input is-info" type="text" placeholder="Select User" v-model="assignedTo">
                       <option v-for="userlst in users.list" :key="userlst.firstName" v-bind:value="userlst.id">{{userlst.firstName}}</option>
                     </select>
                     <span class="icon is-left">
-                      <i class="fas fa-book-reader" aria-hidden="true"></i>
+                      <i class="fas fa-list" aria-hidden="true"></i>
                     </span>
                   </div><br>
                   <div class="control">
-                    <button class="button is-primary">Add</button>
+                    <button class="button abc">Add</button>
                   </div>
                 </div>
               </form>
             </div>
-            <!-- <a class="panel-block" >
-              <input type="checkbox"/>
-              <span></span>
-            </a> -->
+            
             <table class="table" style="width: 100%;">
              <thead>
                     <tr>
@@ -157,4 +149,8 @@ function taskHandler(this: any, currentTab : any){
 </template>
 
 <style scoped>
+.abc{
+	background-color: black;
+	color: white;
+}
 </style>

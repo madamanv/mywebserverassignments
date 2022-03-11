@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import Nav from './components/nav.vue';
-import Messagess from './pages/Messagess.vue';
-
+import Nav from './components/Nav.vue';
 </script>
 
 <template>
-     <Nav />
-     <Messagess />
-     </template>
-     <style>
+  <div>
+    <Nav />
+    <div class="container">
+        <router-view></router-view>
+    </div>
+  </div>
+</template>
 
+<style>
 </style>

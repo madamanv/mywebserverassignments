@@ -4,11 +4,11 @@
 
 <template>
     <div class="buttons" v-if="!session.user">
-        <router-link class="button is-primary" to="/signup">
+        <router-link class="button " to="/signup">
             <strong>Sign up</strong>
         </router-link>
         <router-link class="button is-light" to="/login">
-            Log in
+           <strong> Log in</strong>
         </router-link>
     </div>
     <div class="buttons" v-else>
@@ -19,7 +19,7 @@
                 <i>{{ session.user.email }}</i>
             </div>
         </div>
-        <a class="button is-primary" @click="Logout()">
+        <a class="button abc" @click="Logout()">
             <strong>Log out</strong>
         </a>
     </div>
@@ -42,4 +42,8 @@
             object-fit: cover;
         }
     }
+    .abc{
+	background-color: black;
+	color: white;
+}
 </style>
