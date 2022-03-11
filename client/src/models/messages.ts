@@ -15,7 +15,7 @@ export const useMessages = defineStore('messages', {
     }),
     actions: {
         close(index: number) {
-            this.notifications.splice(index, 1);
+            // this.notifications.splice(index, 1);
         }
     }
 }) 
