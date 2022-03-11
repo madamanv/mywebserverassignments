@@ -5,7 +5,7 @@
     <div class="row">
   <div class="column">
     <div class="card">
-      <img src="src/assets/3.jpg" alt="cs" style="width:100%">
+      <!-- <img src="src/assets/3.jpg" alt="cs" style="width:100%"> -->
       <div class="container">
         <h2>Chandra Sekhar</h2>
         <p class="title">Admin</p>
@@ -18,7 +18,7 @@
 
   <div class="column">
     <div class="card">
-      <img src="src/assets/3.jpg" alt="cs" style="width:100%">
+      <!-- <img src="src/assets/3.jpg" alt="cs" style="width:100%"> -->
       <div class="container">
         <h2>Chandra</h2>
         <p class="title">User</p>
@@ -31,7 +31,7 @@
   
   <div class="column">
     <div class="card">
-     <img src="src/assets/3.jpg" alt="cs" style="width:100%">
+     <!-- <img src="src/assets/3.jpg" alt="cs" style="width:100%"> -->
       <div class="container">
         <h2>Sekhar</h2>
         <p class="title">User</p>
