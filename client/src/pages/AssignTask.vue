@@ -42,6 +42,10 @@ function newTask() {
   console.log(user)
 }
 
+
+interface btn{
+  readonly inputElement : HTMLInputElement;
+}
 </script>
 
 <template>
@@ -63,7 +67,7 @@ function newTask() {
       </div>
       
       <div class="col-75">
-        <input type="text" placeholder="write the task...." v-model="title">
+        <input type="text" placeholder="write the task...." id="title_name" name="title_name" v-model="title">
       </div>
     </div>
     <div class="row ">
@@ -103,7 +107,7 @@ function newTask() {
       </div>
     </div>
     <div class="btn">
-    <button class="button abc x">Add Task</button>
+    <button class="button abc x btn">Add Task</button>
     </div>
   </form>
 </div>
@@ -114,10 +118,7 @@ function newTask() {
 </template>
 
 <style scoped>
-.btn{
-  padding-left:350px;
-  padding-top: 10px;
-}
+
 .xyz{
   padding-right: 60px;
 }
