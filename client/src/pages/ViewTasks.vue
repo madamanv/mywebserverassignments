@@ -1,7 +1,6 @@
 
 <script setup lang="ts">
 import session from "../models/session";
-
 const currentUserTasks = session.user?.userTasks
 console.log(currentUserTasks)
 </script>

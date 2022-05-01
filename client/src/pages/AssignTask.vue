@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import session from "../models/session";
+import { getByHandler, addTask } from "../models/session";
 import { ref } from 'vue'
 import * as userList from "../models/user"
 
@@ -30,16 +31,17 @@ const description = ref('');
 //     }
 //   }
 // }
-
 function newTask() {
-  const user = userList.list.find(u => u.id+"" == assignedTo.value);
+  getByHandler(assignedTo.value).then(response => {
+  const user = response;
   user?.userTasks.unshift({
     task: title.value,
           dueDate: date.value,
           assignedBy: session.user?.handle,
           description: description.value
   })
-  console.log(user)
+  addTask(user);
+  });
 }
 
 
@@ -60,7 +62,7 @@ interface btn{
   </div>
   <div class="card" style="width:70%; height:auto; margin:50px;">
   <div class="container">
-  <form v-on:submit.prevent="newTask()" >
+  <form ref="addTask" v-on:submit.prevent="newTask()" >
     <div class="row">
       <div class="col-25">
         <label for="title">Title</label>
@@ -84,7 +86,7 @@ interface btn{
       </div>
       <div class="col-75">
         <select id="assignedTo" name="assignedTo" v-model="assignedTo">
-          <option v-for="user in userList.list" :key="user.firstName" v-bind:value="user.id">{{user.handle}}</option>
+          <option v-for="user in session.allUsers" :key="user.firstName" v-bind:value="user.handle">{{user.handle}}</option>
         </select>
       </div>
     </div>

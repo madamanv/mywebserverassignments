@@ -7,7 +7,7 @@ const userModel = require('../models/user');
 const CREATED_STATUS = 201;
 
 app
-    .get('/', requireAuth, (req, res, next) => {
+    .get('/', (req, res, next) => {
         userModel.getList()
         .then(users => {
             res.send({ success: true, errors: [], data: users });
@@ -50,9 +50,11 @@ app
 
     })
     .post('/login', (req, res, next) => {
+        console.log(req);
+        console.log('request body'+req.body.email);
         userModel.login(req.body.email, req.body.password)
         .then(user => {
-            res.send({ success: true, errors: [], data: user });
+            res.send({ success: true, errors: [], data: user });    
         }).catch(next);
     })
     .post('/seed', (req, res, next) => {

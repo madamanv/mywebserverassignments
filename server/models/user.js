@@ -61,9 +61,9 @@ async function remove(id){
 async function update(id, newUser){
 
     if(newUser.password){
-        newUser.password = await bcrypt.hash(newUser.password, 10);
+        newUser.password = await bcrypt.hash(newUser.password, process.env.SALT_ROUNDS);
     }
-    
+    console.log(newUser);
     newUser = await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },
         { $set: newUser },
@@ -79,7 +79,7 @@ async function login(email, password){
     if(!user){
         throw { statusCode: 404, message: 'User not found' };
     }
-    if(!await bcrypt.compare(password, user.password)){
+    if(! (password === user.password)){
         throw { statusCode: 401, message: 'Invalid password' };
     }
 
@@ -94,11 +94,11 @@ function fromToken(token){
 
     return new Promise((resolve, reject) => {
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            if(err){
+            /*if(err){
                 reject(err);
-            }else{
+            }else{*/
                 resolve(decoded);
-            }
+            //}
         });
     });
 }
@@ -119,7 +119,7 @@ module.exports = {
         if(!user.handle){
             throw { statusCode: 400, message: 'Handle is required' };
         }
-        user.password = await bcrypt.hash(user.password, +process.env.SALT_ROUNDS);
+        user.password = await bcrypt.hash(user.password, process.env.SALT_ROUNDS);
         console.log(user);
 
         const result = await collection.insertOne(user);
